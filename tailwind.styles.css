@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    font-family: system-ui, sans-serif;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #D8DBE1 #111010 ;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #D8DBE1;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #111010;
+    border-radius: 4px;
+  }
+
+  *::-moz-scrollbar {
+    width: 8px;
+    border-radius: 4px;
+  }
+
+  *::-moz-scrollbar-thumb {
+    background: #D8DBE1;
+    border-radius: 4px;
+  }
+
+  *::-moz-scrollbar-track {
+    background: #111010;
+    border-radius: 4px;
+  }
+
+  *::-ms-scrollbar {
+    width: 8px;
+    border-radius: 4px;
+  }
+
+  *::-ms-scrollbar-thumb {
+    background: #D8DBE1;
+    border-radius: 4px;
+  }
+
+  *::-ms-scrollbar-track {
+    background: #111010;
+    border-radius: 4px;
+  }
+  input {
+    @apply rounded-md bg-zinc-700 py-0.5 px-1.5 focus:outline-indigo-400 focus:outline focus:outline-1;
+  }
+  label {
+    @apply text-indigo-300;
+  }
+
+  th, td {
+    @apply text-left p-2 overflow-hidden text-ellipsis whitespace-nowrap;
+  }
+}
