@@ -12,3 +12,8 @@ pip install -r requirements.txt
 bun install
 # npm install
 ```
+
+---
+
+## TODO
+- add profile image
