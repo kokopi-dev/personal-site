@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% block head %}{% endblock %}
-  <link rel="stylesheet" href="{{ url_for('static', path='css/app.css')|version}}">
+  <link rel="stylesheet" href="{{ rel_static('css/app.css')|version}}">
   <script src="https://unpkg.com/htmx.org@1.9.11"></script>
   <script src="https://unpkg.com/htmx.org@1.9.11/dist/ext/path-params.js"></script>
   <title>{% block title %}{% endblock %} - Derrick Gee</title>

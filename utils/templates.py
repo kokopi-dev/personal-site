@@ -8,8 +8,12 @@ from datetime import UTC
 def versioning(input):
     return f"{input}?v={int(datetime.now().timestamp())}"
 
+def rel_static(static_filename: str):
+    return f"/static/{static_filename}"
+
 templates = Jinja2Templates(directory="templates")
 custom_variables = {
+    "rel_static": rel_static,
     "settings": Env,
     "styles": TailwindStyles,
     "now": datetime.now(UTC)

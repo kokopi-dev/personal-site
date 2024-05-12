@@ -21,7 +21,7 @@ else:
     ]
 
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
 
 # Routes
 app.include_router(home.router)
