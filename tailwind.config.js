@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         "brand": {
           "primary": "#DAD4CA",
-          "secondary": "#D8CEE0",
+          "secondary": "#BFABCE",
           "base-100": "#1A1A1A",
           "base-200": "#292929",
         }

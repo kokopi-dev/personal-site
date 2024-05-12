@@ -3,43 +3,87 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div class="mx-auto rounded-md outline-brand-primary/30 outline outline-1 max-w-5xl p-8 bg-brand-base-200 shadow-md">
-    <div class="flex flex-col gap-4">
-      <h1 class="text-2xl font-bold">John Doe</h1>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-      <h2 class="text-xl font-bold">Latest Blog</h2>
-      <a id="blog-card" class="flex flex-col gap-2" target="_blank">
-        <h3 class="text-brand-secondary text-xl font-bold" id="blog-card-title"></h3>
-        <p class="text-sm" id="blog-card-description"></p>
-        <img id="blog-card-img">
-      </a>
+<header class="">
+  <div class="lg:sticky lg:top-0 flex flex-col gap-3 pt-8 sm:pt-16">
+    <h1 class="text-4xl font-bold">{{ profile.name }}</h1>
+    <h2 class="text-2xl font-bold text-brand-secondary">{{ profile.profession }}</h2>
+    <p>{{ profile.subtitle }}</p>
+    <p class="max-w-sm">{{ profile.description }}</p>
+
+    <div class="flex flex-col">
+      {% for item in navbar.items %}
+        <a href="{{ item.id }}" class="flex gap-4 items-center group p-2">
+          <span class="rounded-full size-2 bg-brand-secondary group-hover:w-12 transition-all motion-reduce:transition-none"></span>
+          <p class="font-semibold">{{ item.name }}</p>
+        </a>
+      {% endfor %}
     </div>
   </div>
-<script type="text/javascript">
-// make this on load
-async function getMeta() {
-  const url = "https://kokopi.dev/blogs/code/effective-neovim-setup-tutorial-guide/"
-  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-  const resp = await fetch(proxyUrl)
-  const data = await resp.json()
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(data.contents, 'text/html');
-  const title = doc.querySelector('title')?.innerText || 'No title';
-  const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || 'No description';
-  const ogImage = doc.querySelector('meta[name="og:image"]')?.getAttribute('content') || '';
+</header>
 
-  const card = document.querySelector("#blog-card")
-  const cardTitle = document.querySelector("#blog-card-title")
-  const cardDescription = document.querySelector("#blog-card-description")
-  const cardImg = document.querySelector("#blog-card-img")
-  cardTitle.textContent = title
-  cardDescription.textContent = description
-  cardImg.src = ogImage
-  card.href = url
-  return { title, description, ogImage }
-}
-getMeta().then((data) => {
-    console.log('Metadata:',data);
-});
-</script>
+<main class="pb-16 pt-4 lg:pt-16">
+  <div class="flex flex-col gap-8">
+    <section class="flex flex-col gap-2">
+      <div id="about" class="flex items-center gap-2">
+        {% with class="size-5 text-brand-secondary" %}
+          {% include "icons/user_circle.html" %}
+        {% endwith %}
+        <h2 class="text-xl font-bold">About</h2>
+      </div>
+      <div class="flex flex-col gap-4">
+        <p>{{ about.description }}</p>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <div id="exp" class="flex items-center gap-2">
+        {% with class="size-5 text-brand-secondary" %}
+          {% include "icons/building_office.html" %}
+        {% endwith %}
+        <h2 id="exp" class="text-xl font-bold">Experiences</h2>
+      </div>
+      <div class="flex flex-col gap-4">
+        {% for item in experiences.items %}
+          <div class="flex flex-col gap-1.5 bg-brand-base-200 p-4 rounded-md shadow-md">
+            <p class="text-brand-primary/50">{{ item.work_style }}</p>
+            <h3 class="font-bold">{{ item.title }} - {{ item.company }}</h3>
+            <p>{{ item.time }}</p>
+            <p>{{ item.description }}</p>
+            <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
+              {% for t in item.tech %}
+                <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section>
+      <p>{{ site.description }}</p>
+      <h3>Built with:</h3>
+      <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
+        {% for t in site.tech %}
+          <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        {% with class="size-5 text-brand-secondary" %}
+          {% include "icons/document_text.html" %}
+        {% endwith %}
+        <h2 id="blog" class="text-xl font-bold">Technical Blog</h2>
+      </div>
+      <a id="blog-card" class="flex flex-col gap-4" target="_blank">
+        <h3 class="text-xl font-bold" id="blog-card-title">{{ random_blog.title }}</h3>
+        <div class="overflow-hidden grid justify-center items-center rounded-md bg-gradient-to-tr from-violet-500/40 to-amber-200/40 w-full min-h-40">
+          <img src="{{ random_blog.image }}" id="blog-card-img" class="" onerror="this.style.display='none';">
+        </div>
+        <p class="text-sm" id="blog-card-description">{{ random_blog.description }}</p>
+      </a>
+    </section>
+  </div>
+</main>
 {% endblock %}

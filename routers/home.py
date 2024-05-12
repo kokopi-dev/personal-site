@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from fastapi import APIRouter, Request
 from utils import templates
+from services.random_blog import get_random_coding_blog_meta
+from info import About, Experiences, Navbar, ThisWebsite, Profile
 
 router = APIRouter(
     tags=["home"]
@@ -8,5 +10,14 @@ router = APIRouter(
 
 @router.get("/")
 async def home_home(request: Request):
-    context = {"request": request}
+    blog_meta = await get_random_coding_blog_meta()
+    context = {
+        "request": request,
+        "profile": Profile(),
+        "navbar": Navbar(),
+        "experiences": Experiences(),
+        "random_blog": blog_meta,
+        "about": About(),
+        "site": ThisWebsite()
+    }
     return templates.TemplateResponse("home.html", context=context)

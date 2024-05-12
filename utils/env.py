@@ -13,6 +13,9 @@ class EnvBase:
     DB_USERNAME: str = ""
     DB_PASSWORD: str = ""
 
+    CODE_CATEGORY_ID: str = ""
+    PUBLIC_BLOGS_FOLDER: str = ""
+
     def __post_init__(self):
         for k, v in dotenv_values().items():
             # setattr(self, k, v)

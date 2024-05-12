@@ -2,9 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 200;
+  font-style: italic;
+  src: url("fonts/SourceCodePro-ExtraLightItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 300;
+  font-style: italic;
+  src: url("fonts/SourceCodePro-LightItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 400;
+  font-style: italic;
+  src: url("fonts/SourceCodePro-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 500;
+  font-style: italic;
+  src: url("fonts/SourceCodePro-MediumItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 600;
+  font-style: italic;
+  src: url("fonts/SourceCodePro-SemiBoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 700;
+  font-style: italic;
+  src: url("fonts/SourceCodePro-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 200;
+  src: url("fonts/SourceCodePro-ExtraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 300;
+  src: url("fonts/SourceCodePro-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 400;
+  src: url("fonts/SourceCodePro-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 500;
+  src: url("fonts/SourceCodePro-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 600;
+  src: url("fonts/SourceCodePro-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 700;
+  src: url("fonts/SourceCodePro-Bold.woff2") format("woff2");
+}
+
 @layer components {
   body {
-    font-family: system-ui, sans-serif;
+    font-family: "Source Code Pro", system-ui, sans-serif;
   }
   * {
     scrollbar-width: thin;
@@ -53,15 +121,5 @@
   *::-ms-scrollbar-track {
     background: #111010;
     border-radius: 4px;
-  }
-  input {
-    @apply rounded-md bg-zinc-700 py-0.5 px-1.5 focus:outline-indigo-400 focus:outline focus:outline-1;
-  }
-  label {
-    @apply text-indigo-300;
-  }
-
-  th, td {
-    @apply text-left p-2 overflow-hidden text-ellipsis whitespace-nowrap;
   }
 }

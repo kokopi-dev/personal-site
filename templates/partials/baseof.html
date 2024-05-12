@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
@@ -11,13 +11,9 @@
   <title>{% block title %}{% endblock %} - Derrick Gee</title>
 </head>
 
-<body class="bg-brand-base-100 text-brand-primary">
-  <div class="grid grid-rows-[1fr_auto_1fr]">
-    {% include "partials/nav.html" %}
-    <section class="w-full h-full p-4">
-      {% block content %}{% endblock %}
-    </section>
-    {% include "partials/footer.html" %}
+<body class="bg-brand-base-100 text-brand-primary leading-relaxed">
+  <div class="mx-auto grid gap-8 lg:max-w-6xl max-w-3xl lg:grid-cols-2 grid-cols-1 sm:px-16 px-8 min-h-screen">
+    {% block content %}{% endblock %}
   </div>
 </body>
 
