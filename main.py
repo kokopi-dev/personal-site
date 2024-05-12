@@ -16,6 +16,7 @@ else:
     origins = [
         "https://derrickgee.dev",
         "https://www.derrickgee.dev",
+        "www.derrickgee.dev",
         "derrickgee.dev"
     ]
 
