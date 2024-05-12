@@ -19,8 +19,9 @@ async def get_random_coding_blog_meta():
             parser = LexborHTMLParser(f.read())
             head = parser.head
             if head:
+                url = head.css('meta[name="og:url"]')[0].attributes.get("content")
                 image = head.css('meta[name="og:image"]')[0].attributes.get("content")
                 title = head.css('meta[name="og:title"]')[0].attributes.get("content")
                 description = head.css('meta[name="og:description"]')[0].attributes.get("content")
-                meta = {"image": image, "title": title, "description": description}
+                meta = {"image": image, "title": title, "description": description, "url": url}
     return meta

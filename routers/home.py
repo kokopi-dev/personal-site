@@ -3,6 +3,7 @@ from fastapi import APIRouter, Request
 from utils import templates
 from services.random_blog import get_random_coding_blog_meta
 from info import About, Experiences, Navbar, ThisWebsite, Profile
+from info.profile import SocialEnum
 
 router = APIRouter(
     tags=["home"]
@@ -18,6 +19,7 @@ async def home_home(request: Request):
         "experiences": Experiences(),
         "random_blog": blog_meta,
         "about": About(),
-        "site": ThisWebsite()
+        "site": ThisWebsite(),
+        "social_enums": SocialEnum
     }
     return templates.TemplateResponse("home.html", context=context)
