@@ -1,7 +1,6 @@
 # Python Custom
 venv/
 .env
-app.css
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
