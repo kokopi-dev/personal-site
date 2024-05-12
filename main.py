@@ -13,7 +13,11 @@ init_static()
 if Env.ENV == "dev":
     origins = ["*"]
 else:
-    origins = ["https://derrickgee.dev"]
+    origins = [
+        "https://derrickgee.dev",
+        "https://www.derrickgee.dev",
+        "derrickgee.dev"
+    ]
 
 
 app = FastAPI()
@@ -26,8 +30,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],  # You can specify specific HTTP methods (e.g., ["GET", "POST"])
-    allow_headers=["*"],  # You can specify specific HTTP headers
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"]
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
