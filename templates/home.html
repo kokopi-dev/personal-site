@@ -23,11 +23,11 @@
       {% for social in profile.socials %}
         {% with class="size-8 text-brand-secondary hover:opacity-60 transition" %}
           {% if social.name == social_enums.github %}
-            <a href="{{ social.url }}" target="_blank">
+            <a href="{{ social.url }}" target="_blank" aria-label="Github">
               {% include "icons/github.html" %}
             </a>
           {% elif social.name == social_enums.linkedin %}
-            <a href="{{ social.url }}" target="_blank">
+            <a href="{{ social.url }}" target="_blank" aria-label="Linkedin">
               {% include "icons/linkedin.html" %}
             </a>
           {% else %}
@@ -102,7 +102,7 @@
           {% endwith %}
         </h3>
         <div class="overflow-hidden grid justify-center items-center rounded-md bg-gradient-to-tr from-violet-500/40 to-amber-200/40 w-full min-h-40">
-          <img src="{{ blog_meta.image_url }}" id="blog-card-img" class="" onerror="this.style.display='none';">
+          <img src="{{ blog_meta.image_url }}" id="blog-card-img" alt="blog cover image" onerror="this.style.display='none';">
         </div>
         <p class="text-sm" id="blog-card-description">{{ blog_meta.description }}</p>
       </a>

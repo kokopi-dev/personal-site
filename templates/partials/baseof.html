@@ -4,10 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="keywords" content="software engineer, computer science, tech, programming, coding">
+  <meta name="description" content="Derrick Gee, a full stack software engineer who builds web apps.">
+
+  <meta property="og:site_name" content="Derrick Gee">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://derrickgee.dev">
+
   {% block head %}{% endblock %}
   <link rel="stylesheet" href="{{ rel_static('css/app.css')|version}}">
-  <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-  <script src="https://unpkg.com/htmx.org@1.9.11/dist/ext/path-params.js"></script>
   <title>{% block title %}{% endblock %} - Derrick Gee</title>
 </head>
 
