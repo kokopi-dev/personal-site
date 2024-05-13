@@ -77,12 +77,26 @@
       </div>
     </section>
 
-    <section>
-      <p>{{ site.description }}</p>
-      <h3>Built with:</h3>
-      <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
-        {% for t in site.tech %}
-          <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        {% with class="size-5 text-brand-secondary" %}
+          {% include "icons/star.html" %}
+        {% endwith %}
+        <h2 id="projects" class="text-xl font-bold">Projects</h2>
+      </div>
+      <div class="flex flex-col gap-4">
+        {% for item in projects.items %}
+        <a href="{{ item.url }}" aria-label="project link">
+            <div class="flex flex-col gap-1.5 bg-brand-base-200 p-4 rounded-md shadow-md">
+              <h3 class="font-bold">{{ item.name }}</h3>
+              <p class="font-light">{{ item.description }}</p>
+              <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
+                {% for t in item.tech %}
+                  <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </a>
         {% endfor %}
       </div>
     </section>
@@ -106,6 +120,15 @@
         </div>
         <p class="text-sm" id="blog-card-description">{{ blog_meta.description }}</p>
       </a>
+    </section>
+
+    <section>
+      <p class="font-light">{{ site.description }}</p>
+      <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
+        {% for t in site.tech %}
+          <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+        {% endfor %}
+      </div>
     </section>
   </div>
 </main>

@@ -2,7 +2,7 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends, Request
 from utils import templates
-from info import About, Experiences, Navbar, ThisWebsite, Profile
+from info import About, Experiences, Navbar, ThisWebsite, Profile, Projects
 from info.profile import SocialEnum
 from db.tables.blogs import BlogTable
 
@@ -26,6 +26,7 @@ async def home_home(request: Request, table: BlogTableDep):
         "blog_meta": blog_meta,
         "about": About(),
         "site": ThisWebsite(),
+        "projects": Projects(),
         "social_enums": SocialEnum
     }
     return templates.TemplateResponse("home.html", context=context)

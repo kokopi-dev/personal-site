@@ -9,5 +9,6 @@ class Navbar(BaseModel):
     items: list[NavbarItem] = [
         NavbarItem(name="About", id="#about"),
         NavbarItem(name="Experience", id="#exp"),
+        NavbarItem(name="Projects", id="#projects"),
         NavbarItem(name="Blog", id="#blog")
     ]
