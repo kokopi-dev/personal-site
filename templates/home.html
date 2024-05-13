@@ -86,7 +86,7 @@
       </div>
       <div class="flex flex-col gap-4">
         {% for item in projects.items %}
-        <a href="{{ item.url }}" aria-label="project link">
+          <a href="{{ item.url }}" aria-label="project link" target="_blank">
             <div class="flex flex-col gap-1.5 bg-brand-base-200 p-4 rounded-md shadow-md">
               <h3 class="font-bold">{{ item.name }}</h3>
               <p class="font-light">{{ item.description }}</p>
