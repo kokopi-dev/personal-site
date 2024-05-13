@@ -94,17 +94,17 @@
         {% endwith %}
         <h2 id="blog" class="text-xl font-bold">Technical Blog</h2>
       </div>
-      <a id="blog-card" class="flex flex-col gap-4" href="{{ random_blog.url }}" target="_blank">
+      <a id="blog-card" class="flex flex-col gap-4" href="{{ blog_meta.url }}" target="_blank">
         <h3 class="text-xl font-bold" id="blog-card-title">
-          {{ random_blog.title }}
+          {{ blog_meta.title }}
           {% with class="size-5 text-brand-primary inline" %}
             {% include "icons/arrow_top_right_on_square.html" %}
           {% endwith %}
         </h3>
         <div class="overflow-hidden grid justify-center items-center rounded-md bg-gradient-to-tr from-violet-500/40 to-amber-200/40 w-full min-h-40">
-          <img src="{{ random_blog.image }}" id="blog-card-img" class="" onerror="this.style.display='none';">
+          <img src="{{ blog_meta.image_url }}" id="blog-card-img" class="" onerror="this.style.display='none';">
         </div>
-        <p class="text-sm" id="blog-card-description">{{ random_blog.description }}</p>
+        <p class="text-sm" id="blog-card-description">{{ blog_meta.description }}</p>
       </a>
     </section>
   </div>

@@ -1,7 +1,7 @@
 from multiprocessing import cpu_count
 
 # Socket Path
-bind = '0.0.0.0:8111'
+bind = '127.0.0.1:8111'
 
 # Worker Options
 workers = cpu_count() + 1

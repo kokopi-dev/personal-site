@@ -1,6 +1,8 @@
 # Python Custom
 venv/
 .env
+access_log
+error_log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
