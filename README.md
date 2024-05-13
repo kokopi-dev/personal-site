@@ -1,5 +1,5 @@
 # Personal Site
-Public personal site to display some code. Using Python FastAPI, SQLAlchemy, HTMX, Tailwindcss. Deployed on DigitalOcean VPS
+Public personal site to display some code. Using Python FastAPI, SQLAlchemy, Tailwindcss. Deployed on DigitalOcean VPS.
 
 ---
 
@@ -15,5 +15,8 @@ bun install
 
 ---
 
-## TODO
-- add profile image
+## Scripts
+```
+# tailwind
+./tailwind.sh watch
+```
