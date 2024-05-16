@@ -19,6 +19,9 @@ module.exports = {
           "base-100-li": "#EEEEEE",
           "base-200-li": "#DCDCDC",
         }
+      },
+      animation: {
+        "pulse-fast-short": "pulse 0.8s ease-in-out infinite"
       }
     },
   },
