@@ -6,6 +6,7 @@ class Project(BaseModel):
     url: str
     description: str
     tech: list[str]
+    github: bool
 
 class Projects(BaseModel):
     items: list[Project] = [
@@ -13,18 +14,21 @@ class Projects(BaseModel):
             name="derrickgee.dev",
             url="https://github.com/kokopi-dev/personal-site",
             description="Portfolio site.",
-            tech=["Python", "FastAPI", "Tailwindcss"]
+            tech=["Python", "FastAPI", "Tailwindcss"],
+            github=True
         ),
         Project(
             name="Vim (Neovim) Config",
             url="https://github.com/kokopi-dev/dotfiles/tree/master/nvim",
             description="My personal neovim config along with my Linux dotfiles.",
-            tech=["Lua"]
+            tech=["Lua"],
+            github=True
         ),
         Project(
             name="kokopi.dev",
             url="https://kokopi.dev",
             description="Personal blog site.",
-            tech=["Hugo", "Javascript", "Tailwindcss"]
+            tech=["Hugo", "Javascript", "Tailwindcss"],
+            github=False
         ),
     ]

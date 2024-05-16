@@ -1,0 +1,47 @@
+<button aria-label="theme toggle" title="theme toggle" onclick="toggleTheme()" class="p-2 rounded-full dark:shadow-black shadow-md w-fit h-fit dark:hover:bg-c-base-200 hover:bg-c-base-200-li transition">
+  {% with class="size-5 dark:text-c-primary text-c-primary-li" %}
+    <span id="light-icon">
+      {% include "icons/moon.html" %}
+    </span>
+    <span id="dark-icon">
+      {% include "icons/moon_solid.html" %}
+    </span>
+  {% endwith %}
+</button>
+
+<script type="text/javascript">
+  const themeKey = "theme";
+  const darkTheme = "dark";
+  const lightTheme = "light";
+  const darkIcon = document.querySelector("#dark-icon");
+  const lightIcon = document.querySelector("#light-icon");
+  const setIcons = (theme) => {
+    if (theme === darkTheme) {
+      darkIcon.classList.remove("hidden")
+      lightIcon.classList.add("hidden")
+    } else {
+      lightIcon.classList.remove("hidden")
+      darkIcon.classList.add("hidden")
+    }
+  }
+  const setTheme = (theme) => {
+    setIcons(theme)
+    if (theme === darkTheme) {
+      document.firstElementChild.classList.add("dark");
+    } else {
+      document.firstElementChild.classList.remove("dark")
+    }
+    localStorage.setItem(themeKey, theme);
+  }
+  const initTheme = () => {
+    let theme = localStorage.getItem(themeKey) || darkTheme;
+    setIcons(theme)
+    setTheme(theme)
+  }
+  const toggleTheme = () => {
+    let theme = localStorage.getItem(themeKey) || darkTheme;
+    let newTheme = theme === darkTheme ? lightTheme : darkTheme;
+    setTheme(newTheme);
+  }
+  initTheme()
+</script>

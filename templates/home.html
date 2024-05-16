@@ -5,15 +5,19 @@
 {% block content %}
 <header>
   <div class="lg:sticky lg:top-0 flex flex-col gap-3 pt-8 sm:pt-16">
-    <h1 class="text-4xl font-bold">{{ profile.name }}</h1>
-    <h2 class="text-2xl font-bold text-brand-secondary">{{ profile.profession }}</h2>
+    <span class="flex gap-5 items-center">
+      {# include "partials/language_changer.html" #}
+      {% include "partials/theme_changer.html" %}
+      <h1 class="text-4xl font-bold">{{ profile.name }}</h1>
+    </span>
+    <h2 class="text-2xl font-bold dark:text-c-secondary text-c-secondary-li">{{ profile.profession }}</h2>
     <p>{{ profile.subtitle }}</p>
     <p class="max-w-sm">{{ profile.description }}</p>
 
     <div class="flex flex-col">
       {% for item in navbar.items %}
         <a href="{{ item.id }}" class="flex gap-4 items-center group p-2">
-          <span class="rounded-full size-2 bg-brand-secondary group-hover:w-12 transition-all motion-reduce:transition-none"></span>
+          <span class="rounded-full size-2 dark:bg-c-secondary bg-c-secondary-li group-hover:w-12 transition-all motion-reduce:transition-none"></span>
           <p class="font-semibold">{{ item.name }}</p>
         </a>
       {% endfor %}
@@ -21,7 +25,7 @@
 
     <div class="flex gap-4 mt-8">
       {% for social in profile.socials %}
-        {% with class="size-8 text-brand-secondary hover:opacity-60 transition" %}
+        {% with class="size-8 dark:text-c-secondary text-c-secondary-li hover:opacity-60 transition" %}
           {% if social.name == social_enums.github %}
             <a href="{{ social.url }}" target="_blank" aria-label="Github">
               {% include "icons/github.html" %}
@@ -43,7 +47,7 @@
   <div class="flex flex-col gap-8">
     <section class="flex flex-col gap-2">
       <div id="about" class="flex items-center gap-2">
-        {% with class="size-5 text-brand-secondary" %}
+        {% with class="size-5 dark:text-c-secondary text-c-secondary-li" %}
           {% include "icons/user_circle.html" %}
         {% endwith %}
         <h2 class="text-xl font-bold">About</h2>
@@ -55,21 +59,21 @@
 
     <section class="flex flex-col gap-4">
       <div id="exp" class="flex items-center gap-2">
-        {% with class="size-5 text-brand-secondary" %}
+        {% with class="size-5 dark:text-c-secondary text-c-secondary-li" %}
           {% include "icons/building_office.html" %}
         {% endwith %}
         <h2 id="exp" class="text-xl font-bold">Experiences</h2>
       </div>
       <div class="flex flex-col gap-4">
         {% for item in experiences.items %}
-          <div class="flex flex-col gap-1.5 bg-brand-base-200 p-4 rounded-md shadow-md">
-            <p class="text-brand-primary/50">{{ item.work_style }}</p>
+          <div class="{{ styles.cards.info }}">
+            <p class="dark:text-c-primary/50 text-c-primary-li/50">{{ item.work_style }}</p>
             <h3 class="font-bold">{{ item.title }} - {{ item.company }}</h3>
             <p>{{ item.time }}</p>
             <p>{{ item.description }}</p>
             <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
               {% for t in item.tech %}
-                <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+                <span class="{{ styles.badges.regular }}">{{ t }}</span>
               {% endfor %}
             </div>
           </div>
@@ -79,7 +83,7 @@
 
     <section class="flex flex-col gap-4">
       <div class="flex items-center gap-2">
-        {% with class="size-5 text-brand-secondary" %}
+        {% with class="size-5 dark:text-c-secondary text-c-secondary-li" %}
           {% include "icons/star.html" %}
         {% endwith %}
         <h2 id="projects" class="text-xl font-bold">Projects</h2>
@@ -87,12 +91,24 @@
       <div class="flex flex-col gap-4">
         {% for item in projects.items %}
           <a href="{{ item.url }}" aria-label="project link" target="_blank">
-            <div class="flex flex-col gap-1.5 bg-brand-base-200 p-4 rounded-md shadow-md">
-              <h3 class="font-bold">{{ item.name }}</h3>
-              <p class="font-light">{{ item.description }}</p>
+            <div class="{{ styles.cards.info }} dark:hover:bg-c-base-200/55 hover:bg-c-base-200-li/55 transition">
+              <span class="flex items-center gap-3">
+                {% if item.github == True %}
+                  {% with class="size-5" %}
+                    {% include "icons/github.html" %}
+                  {% endwith %}
+                {% endif %}
+                <h3 class="font-bold">{{ item.name }}</h3>
+                {% if item.github == False %}
+                  {% with class="size-5" %}
+                    {% include "icons/arrow_top_right_on_square.html" %}
+                  {% endwith %}
+                {% endif %}
+              </span>
+              <p>{{ item.description }}</p>
               <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
                 {% for t in item.tech %}
-                  <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+                  <span class="{{ styles.badges.regular }}">{{ t }}</span>
                 {% endfor %}
               </div>
             </div>
@@ -103,7 +119,7 @@
 
     <section class="flex flex-col gap-4">
       <div class="flex items-center gap-2">
-        {% with class="size-5 text-brand-secondary" %}
+        {% with class="size-5 dark:text-c-secondary text-c-secondary-li" %}
           {% include "icons/document_text.html" %}
         {% endwith %}
         <h2 id="blog" class="text-xl font-bold">Technical Blog</h2>
@@ -111,7 +127,7 @@
       <a id="blog-card" class="flex flex-col gap-4" href="{{ blog_meta.url }}" target="_blank">
         <h3 class="text-xl font-bold" id="blog-card-title">
           {{ blog_meta.title }}
-          {% with class="size-5 text-brand-primary inline" %}
+          {% with class="size-5 dark:text-c-primary text-c-primary-li inline" %}
             {% include "icons/arrow_top_right_on_square.html" %}
           {% endwith %}
         </h3>
@@ -126,7 +142,7 @@
       <p class="font-light">{{ site.description }}</p>
       <div class="flex gap-x-2 gap-y-3 flex-wrap my-2">
         {% for t in site.tech %}
-          <span class="block rounded-full bg-brand-primary/75 text-brand-base-200 font-semibold px-3 py-1.5">{{ t }}</span>
+          <span class="{{ styles.badges.regular }}">{{ t }}</span>
         {% endfor %}
       </div>
     </section>

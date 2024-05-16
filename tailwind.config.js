@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'selector',
   content: [
     "./static/**/*.{js,html}",
     "./templates/**/*.html",
@@ -8,11 +9,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "brand": {
+        "c": {
           "primary": "#DAD4CA",
           "secondary": "#BFABCE",
           "base-100": "#1A1A1A",
           "base-200": "#292929",
+          "primary-li": "#424242",
+          "secondary-li": "#915C9E",
+          "base-100-li": "#EEEEEE",
+          "base-200-li": "#DCDCDC",
         }
       }
     },
