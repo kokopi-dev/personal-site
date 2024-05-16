@@ -14,6 +14,7 @@
   <meta property="og:url" content="https://derrickgee.dev">
 
   {% block head %}{% endblock %}
+  <link rel="preload" as="style" href="{{ rel_static('css/app.css')|version}}">
   <link rel="stylesheet" href="{{ rel_static('css/app.css')|version}}">
   <title>{% block title %}{% endblock %} - Derrick Gee</title>
 </head>
