@@ -1,51 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+  {% include "partials/head.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:locale" content="en_US">
-
-  <meta name="keywords" content="software engineer, computer science, tech, programming, coding">
-  <meta name="description" content="Derrick Gee, a full stack software engineer who builds web apps.">
-
-  <meta property="og:site_name" content="Derrick Gee">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://derrickgee.dev">
-
-  {% block head %}{% endblock %}
-  <link rel="preload" as="style" href="{{ rel_static('css/app.css')|version}}">
-  <link rel="stylesheet" href="{{ rel_static('css/app.css')|version}}">
-  <title>{% block title %}{% endblock %} - Derrick Gee</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ rel_static('assets/favicon/apple-touch-icon.png') }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{rel_static('assets/favicon/favicon-32x32.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ rel_static('assets/favicon/favicon-16x16.png')}}">
-  <link rel="manifest" href="{{ rel_static('assets/favicon/site.webmanifest')}}">
-</head>
-
-<body class="dark:bg-c-base-100 bg-c-base-100-li dark:text-c-primary text-c-primary-li leading-relaxed">
-  <div id="loader" class="mx-auto grid gap-8 lg:max-w-6xl max-w-3xl lg:grid-cols-2 grid-cols-1 sm:px-16 px-6 min-h-screen">
-      {% include "partials/home_loader.html" %}
-  </div>
-  <div id="main-content" class="mx-auto hidden gap-8 lg:max-w-6xl max-w-3xl lg:grid-cols-2 grid-cols-1 sm:px-16 px-6 min-h-screen">
-    {% block content %}{% endblock %}
-  </div>
-
-  <script type="text/javascript">
-    const hideLoader = () => {
-      let hideCss = ["-z-10", "invisible", "absolute"]
-      let loader = document.querySelector("#loader");
-      let mainContent = document.querySelector("#main-content");
-      loader.classList.add(...hideCss);
-      loader.classList.remove("grid")
-      mainContent.classList.remove("hidden")
-      mainContent.classList.add("grid")
-      setTimeout(() => {
-        loader.classList.add("hidden")
-      }, 0);
-    };
-    setTimeout(hideLoader, 600);
-  </script>
-</body>
-
+  <body class="dark:bg-c-base-100 bg-c-base-100-li dark:text-c-primary text-c-primary-li leading-relaxed">
+    <div id="loader" class="mx-auto grid gap-8 lg:max-w-6xl max-w-3xl lg:grid-cols-2 grid-cols-1 sm:px-16 px-6 min-h-screen">
+        {% include "partials/home_loader.html" %}
+    </div>
+    <div id="main-content" class="mx-auto hidden gap-8 lg:max-w-6xl max-w-3xl lg:grid-cols-2 grid-cols-1 sm:px-16 px-6 min-h-screen">
+      {% block content %}{% endblock %}
+    </div>
+    <script type="text/javascript" src="{{ rel_static('js/bundle.js')|version }}"></script>
+  </body>
 </html>

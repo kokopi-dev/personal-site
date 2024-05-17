@@ -1,0 +1,21 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="keywords" content="software engineer, computer science, tech, programming, coding">
+  <meta name="description" content="Derrick Gee, a full stack software engineer who builds web apps.">
+
+  <meta property="og:site_name" content="Derrick Gee">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://derrickgee.dev">
+
+  {% block head %}{% endblock %}
+  <link rel="preload" as="style" href="{{ rel_static('css/app.css')|version}}">
+  <link rel="stylesheet" href="{{ rel_static('css/app.css')|version}}">
+  <title>{% block title %}{% endblock %} - Derrick Gee</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ rel_static('assets/favicon/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{rel_static('assets/favicon/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ rel_static('assets/favicon/favicon-16x16.png')}}">
+  <link rel="manifest" href="{{ rel_static('assets/favicon/site.webmanifest')}}">
+</head>
