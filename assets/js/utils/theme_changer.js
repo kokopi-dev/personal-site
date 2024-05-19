@@ -23,12 +23,16 @@ const setTheme = (theme) => {
 }
 const initTheme = () => {
   let theme = localStorage.getItem(themeKey) || darkTheme;
-  setIcons(theme)
-  setTheme(theme)
+  setIcons(theme);
+  setTheme(theme);
 }
-const toggleTheme = () => {
-  let theme = localStorage.getItem(themeKey) || darkTheme;
-  let newTheme = theme === darkTheme ? lightTheme : darkTheme;
-  setTheme(newTheme);
+const addToggleTheme = () => {
+  let btn = document.querySelector("#theme-changer")
+  btn.addEventListener("click", () => {
+    let theme = localStorage.getItem(themeKey) || darkTheme;
+    let newTheme = theme === darkTheme ? lightTheme : darkTheme;
+    setTheme(newTheme);
+  });
 }
-initTheme()
+initTheme();
+addToggleTheme();
