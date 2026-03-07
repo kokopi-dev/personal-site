@@ -21,7 +21,7 @@ templ navbar(params *constants.LayoutParams) {
 					class="text-xs text-fg-300 hover:text-fg-100 transition-colors duration-150"
 				>projects</a>
 				<a
-					href="https://github.com"
+					href="https://git.kokopi.dev/kokopi/personal-site"
 					class="text-xs text-fg-300 hover:text-fg-100 transition-colors duration-150 flex items-center gap-1.5"
 				>
 					<svg width="12" height="12" viewBox="0 0 32 32" fill="currentColor">
@@ -32,7 +32,7 @@ templ navbar(params *constants.LayoutParams) {
 					gitea
 				</a>
 				<a
-					href="https://github.com"
+					href="https://github.com/kokopi-dev/personal-site"
 					class="text-xs text-fg-300 hover:text-fg-100 transition-colors duration-150 flex items-center gap-1.5"
 				>
 					<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -47,12 +47,12 @@ templ navbar(params *constants.LayoutParams) {
 	</header>
 }
 
+
 templ MainLayout(params *constants.LayoutParams) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
-			<meta charset="UTF-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			@LayoutHeadMetadata()
 			<link rel="stylesheet" href={ fmt.Sprintf("/static/css/app.css?v=%d", time.Now().Unix()) }/>
 			<title>{ params.Title }</title>
 		</head>
