@@ -3,7 +3,9 @@ FROM oven/bun:latest AS css
 
 WORKDIR /app
 
-RUN bun add tailwindcss @tailwindcss/cli
+COPY package.json bun.lock ./
+
+RUN bun install --frozen-lockfile
 
 COPY tailwind.css ./tailwind.css
 COPY pages/ ./pages/
@@ -13,7 +15,6 @@ RUN bunx @tailwindcss/cli \
       -i ./tailwind.css \
       -o ./static/css/app.css \
       --minify
-
 
 # go build
 FROM golang:1.25-alpine AS builder

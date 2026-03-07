@@ -5,4 +5,3 @@ static/css/app.css
 *_templ.go
 server
 node_modules/
-bun.lock
