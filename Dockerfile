@@ -6,7 +6,6 @@ WORKDIR /app
 RUN bun add tailwindcss @tailwindcss/cli
 
 COPY tailwind.css ./tailwind.css
-COPY templates/ ./templates/
 
 RUN bunx @tailwindcss/cli \
       -i ./tailwind.css \
