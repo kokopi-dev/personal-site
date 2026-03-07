@@ -6,6 +6,8 @@ WORKDIR /app
 RUN bun add tailwindcss @tailwindcss/cli
 
 COPY tailwind.css ./tailwind.css
+COPY pages/ ./pages/
+COPY components/ ./components/
 
 RUN bunx @tailwindcss/cli \
       -i ./tailwind.css \
@@ -35,6 +37,7 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=builder /app/server .
+COPY --from=builder /app/static/ ./static/
 COPY --from=css /app/static/css/app.css ./static/css/app.css
 
 EXPOSE 3500
