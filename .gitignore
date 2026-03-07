@@ -1,0 +1,8 @@
+tmp/
+.dev.pids
+.env
+static/css/app.css
+*_templ.go
+server
+node_modules/
+bun.lock
