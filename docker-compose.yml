@@ -2,6 +2,8 @@ services:
   personal-site:
     build: .
     container_name: personal-site
+    env_file:
+      - .env  
     ports:
       - "127.0.0.1:3500:3500"
     restart: unless-stopped
