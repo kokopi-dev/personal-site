@@ -1,0 +1,7 @@
+services:
+  personal-site:
+    build: .
+    container_name: personal-site
+    ports:
+      - "127.0.0.1:3500:3500"
+    restart: unless-stopped
