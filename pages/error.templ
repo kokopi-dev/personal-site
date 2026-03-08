@@ -1,0 +1,14 @@
+package pages
+
+import "personal-site/components"
+import "personal-site/constants"
+
+templ ErrorPage() {
+	{{ params := constants.NewLayoutParams("Not Found") }}
+	@components.MainLayout(params) {
+        <div class="mx-auto flex flex-col gap-4 text-center">
+            <h2>page not found</h2>
+            <a href="/">Go Home</a>
+        </div>
+	}
+}

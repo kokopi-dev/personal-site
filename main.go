@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"personal-site/handlers"
 	"personal-site/pages"
 	"syscall"
 	"time"
@@ -21,6 +22,7 @@ func setupRoutesAndMiddleware() *gin.Engine {
 		page := pages.Index()
 		page.Render(c.Request.Context(), c.Writer)
 	})
+	r.NoRoute(handlers.NotFoundHandler)
 	return r
 }
 
