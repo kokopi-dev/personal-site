@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"personal-site/constants"
 	"personal-site/handlers"
 	"personal-site/pages"
 	"syscall"
@@ -20,6 +21,24 @@ func setupRoutesAndMiddleware() *gin.Engine {
 	r.Static("/static", "./static")
 	r.GET("/", func(c *gin.Context) {
 		page := pages.Index()
+		page.Render(c.Request.Context(), c.Writer)
+	})
+	var projects = []constants.Project{
+		{
+			Url:         "https://derrickgee.dev/projects/support-tickets",
+			Name:        "Project One",
+			Description: "A simple Go Gin + Templ app demonstrating the project pattern.",
+			TechTags:    []string{"Typescript", "Javascript", "React", "Express"},
+		},
+		{
+			Url:         "https://derrickgee.dev/projects/support-tickets",
+			Name:        "Project Two",
+			Description: "A simple Go Gin + Templ app demonstrating the project pattern.",
+			TechTags:    []string{"Go", "Bash"},
+		},
+	}
+	r.GET("/projects", func(c *gin.Context) {
+		page := pages.ProjectPage(projects)
 		page.Render(c.Request.Context(), c.Writer)
 	})
 	r.NoRoute(handlers.NotFoundHandler)
