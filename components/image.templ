@@ -1,0 +1,16 @@
+package components
+
+templ Image(src, alt, caption string) {
+	<figure class="w-full">
+		<img
+			src={ src }
+			alt={ alt }
+			class="w-full h-auto rounded-lg object-cover"
+		/>
+		if caption != "" {
+			<figcaption class="mt-2 text-center font-mono text-[0.6875rem] text-fg-300">
+				{ caption }
+			</figcaption>
+		}
+	</figure>
+}

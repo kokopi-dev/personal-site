@@ -5,4 +5,7 @@ type Project struct {
 	Name        string
 	Description string
 	TechTags    []string
+	LinkGitea   string
+	LinkGithub  string
+	HostedOn    string
 }

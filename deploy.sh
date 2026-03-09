@@ -5,7 +5,7 @@ echo "Pulling latest code..."
 git pull
 
 echo "Building and restarting containers..."
-docker compose up -d --build
+docker compose up -d --build --remove-orphans
 
 echo "Cleaning up old images..."
 docker image prune -f
