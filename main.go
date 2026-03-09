@@ -25,22 +25,26 @@ func setupRoutesAndMiddleware() *gin.Engine {
 	})
 	var projects = []constants.Project{
 		{
-			Url:         "https://derrickgee.dev/projects/support-tickets",
-			Name:        "Project One",
-			Description: "A simple Go Gin + Templ app demonstrating the project pattern.",
-			TechTags:    []string{"Typescript", "Javascript", "React", "Express"},
+			Url:         "https://derrickgee.dev/projects/support-ticket-demo",
+			Name:        "Support Ticket System",
+			Description: "",
+			TechTags:    []string{"typescript", "react", "fastify", "tailwindcss", "sqlite", "vite", "bun"},
 		},
 		{
-			Url:         "https://derrickgee.dev/projects/support-tickets",
-			Name:        "Project Two",
-			Description: "A simple Go Gin + Templ app demonstrating the project pattern.",
-			TechTags:    []string{"Go", "Bash"},
+			Url:         "/projects/dotfiles",
+			Name:        "Linux Dotfiles",
+			Description: "Configurations for Linux",
+			TechTags:    []string{"Linux", "Lua", "Bash", "Python"},
 		},
 	}
 	r.GET("/projects", func(c *gin.Context) {
 		page := pages.ProjectPage(projects)
 		page.Render(c.Request.Context(), c.Writer)
 	})
+	// r.GET("/projects/dotfiles", func(c *gin.Context) {
+	// 	page := pages.Dotfiles()
+	// 	page.Render(c.Request.Context(), c.Writer)
+	// })
 	r.NoRoute(handlers.NotFoundHandler)
 	return r
 }
@@ -54,13 +58,13 @@ func init() {
 }
 func main() {
 	router := setupRoutesAndMiddleware()
-
-	// dev env
-	router.SetTrustedProxies(nil)
-
-	// prod env
-	// router.SetTrustedProxies([]string{"127.0.0.1"})
-	// router.TrustedPlatform = gin.PlatformCloudflare
+	ginEnv := os.Getenv("GIN_ENV")
+	if ginEnv == "debug" {
+		router.SetTrustedProxies(nil)
+	} else {
+		router.SetTrustedProxies([]string{"127.0.0.1"})
+		router.TrustedPlatform = gin.PlatformCloudflare
+	}
 
 	srv := &http.Server{
 		Addr:    ":3500",
