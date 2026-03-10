@@ -4,43 +4,8 @@ import (
 	"fmt"
 	"personal-site/constants"
 	"time"
-	"personal-site/components/icons"
 )
 
-templ navbar(params *constants.LayoutParams) {
-	<header class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-bg-100/80 backdrop-blur-sm">
-		<div class="max-w-3xl mx-auto px-4 h-12 flex items-center justify-between">
-			<a
-				href="/"
-				class="font-mono text-xs text-fg-200 tracking-widest uppercase hover:text-fg-100 transition-colors duration-150 shrink-0"
-			>
-				{ params.NavTitle }
-			</a>
-			<nav class="flex items-center gap-4">
-				<a
-					href="/projects"
-					class="text-xs text-fg-300 hover:text-fg-100 transition-colors duration-150"
-				>projects</a>
-				<a
-					href="https://git.kokopi.dev/kokopi/personal-site"
-					class="text-xs text-fg-300 hover:text-fg-100 transition-colors duration-150 flex items-center gap-1.5 sm:p-0 p-0.5"
-					aria-label="Gitea"
-				>
-                    @icons.Gitea("size-4 shrink-0")
-					<span class="hidden sm:inline">gitea</span>
-				</a>
-				<a
-					href="https://github.com/kokopi-dev/personal-site"
-					class="text-xs text-fg-300 hover:text-fg-100 transition-colors duration-150 flex items-center gap-1.5 sm:p-0 p-0.5"
-					aria-label="GitHub"
-				>
-                    @icons.Github("size-4 shrink-0")
-					<span class="hidden sm:inline">github</span>
-				</a>
-			</nav>
-		</div>
-	</header>
-}
 
 
 templ MainLayout(params *constants.LayoutParams) {
@@ -53,7 +18,7 @@ templ MainLayout(params *constants.LayoutParams) {
 		</head>
 		<body class="relative bg-linear-to-b from-bg-400 to-bg-100 text-fg-100 overflow-hidden font-sans">
 			<div class="h-screen grid grid-rows-[auto_1fr_auto] overflow-y-auto overflow-x-hidden">
-				@navbar(params)
+				@Navbar(params)
 				// base container
 				<div class="p-4 mt-6 flex flex-col gap-6 max-w-3xl mx-auto">
 					{ children... }

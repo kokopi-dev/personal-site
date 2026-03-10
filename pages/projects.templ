@@ -4,79 +4,83 @@ import "personal-site/constants"
 import "fmt"
 import "personal-site/components"
 import "personal-site/components/icons"
+import "personal-site/helpers"
 
 templ projectCard(idx int, project constants.Project) {
-	<div
-		class="group relative rounded-lg px-5 py-4 flex items-start justify-between gap-4 fade-up bg-[#111113] border border-zinc-800 transition-all duration-150 ease-in-out hover:border-zinc-600 hover:bg-[#18181b] hover:-translate-y-0.5"
-		style={ fmt.Sprintf("animation-delay: %dms", idx*30) }
-	>
-		<a href={ project.Url } target="_blank" class="absolute inset-0 rounded-lg" aria-label={ project.Name }></a>
-		<div class="pointer-events-none relative z-10 flex-1 min-w-0">
-			<div class="flex items-center gap-2.5 mb-1.5">
-				<span class="text-sm font-medium">{ project.Name }</span>
-			</div>
-			<p class="text-zinc-500 text-xs leading-relaxed mb-3">{ project.Description }</p>
-			<div class="flex flex-wrap gap-1.5 mb-3">
-				for _, tag := range project.TechTags {
-					<span class="font-mono text-xs px-2 py-0.5 rounded-sm bg-zinc-800 text-fg-200">{ tag }</span>
-				}
-			</div>
-			if project.HostedOn != "" {
-				<p class="text-zinc-600 text-[0.6875rem] font-mono mb-3">
-					<span class="text-zinc-500">hosted on</span> { project.HostedOn }
-				</p>
-			}
-			if project.LinkGitea != "" || project.LinkGithub != "" {
-				<div class="flex items-center gap-2">
-					if project.LinkGitea != "" {
-						<a
-							href={ templ.URL(project.LinkGitea) }
-							target="_blank"
-							class="pointer-events-auto inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[0.6875rem] font-medium bg-zinc-800 text-fg-200 border border-zinc-700 hover:border-zinc-500 hover:text-fg-100 transition-all duration-150"
-						>
-							@icons.Gitea("size-4")
-							Gitea
-                            @icons.ArrowUpRight("size-3")
-						</a>
-					}
-					if project.LinkGithub != "" {
-						<a
-							href={ templ.URL(project.LinkGithub) }
-							target="_blank"
-							class="pointer-events-auto inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[0.6875rem] font-medium bg-zinc-800 text-fg-200 border border-zinc-700 hover:border-zinc-500 hover:text-fg-100 transition-all duration-150"
-						>
-							@icons.Github("size-4")
-							GitHub
-                            @icons.ArrowUpRight("size-3")
-						</a>
-					}
-				</div>
-			}
-		</div>
-		<div
-			class="arrow relative z-10 text-fg-200 mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-150 ease-in-out"
-		>
-            @icons.ArrowUpRight("size-4")
-		</div>
-	</div>
+<div class="group relative rounded-lg px-5 py-4 flex items-start justify-between gap-4 fade-up bg-[#111113] border border-zinc-800 transition-all duration-150 ease-in-out hover:border-zinc-600 hover:bg-[#18181b] hover:-translate-y-0.5"
+    style={ fmt.Sprintf("animation-delay: %dms", idx*30) }>
+    <a href={ project.Url } target="_blank" class={ helpers.TemplIf(project.IsWIP, "pointer-events-none" , "" ) + " absolute inset-0 rounded-lg" } aria-label={ project.Name }></a>
+    <div class={ helpers.TemplIf(project.IsWIP, "text-fg-300", "") + " pointer-events-none relative z-10 flex-1 min-w-0"}>
+        <div class="flex items-center gap-2.5 mb-1.5">
+            <span class="text-sm font-medium">{ project.Name }</span>
+            <span>
+                if project.IsWIP {
+                    @components.Badge(components.BadgeInProgress)
+                } else {
+                    @components.Badge(components.BadgeDeployed)
+                }
+            </span>
+        </div>
+        <p class="text-zinc-500 text-xs leading-relaxed mb-3">{ project.Description }</p>
+        <div class="flex flex-wrap gap-1.5 mb-3">
+            for _, tag := range project.TechTags {
+            <span class="font-mono text-xs px-2 py-0.5 rounded-sm bg-zinc-800 text-fg-200">{ tag }</span>
+            }
+        </div>
+        if project.HostedOn != "" {
+        <p class="text-zinc-600 text-[0.6875rem] font-mono mb-3">
+            <span class="text-zinc-500">hosted on</span> { project.HostedOn }
+        </p>
+        }
+        if project.LinkGitea != "" || project.LinkGithub != "" {
+            <div class="flex items-center gap-2">
+                if project.LinkGitea != "" {
+                <a href={ templ.URL(project.LinkGitea) } target="_blank"
+                    class={ helpers.TemplIf(project.IsWIP, "pointer-events-none", "pointer-events-auto") + " inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[0.6875rem] font-medium bg-zinc-800 text-fg-200 border border-zinc-700 hover:border-zinc-500 hover:text-fg-100 transition-all duration-150"}>
+                    @icons.Gitea("size-4")
+                    Gitea
+                    @icons.ArrowUpRight("size-3")
+                </a>
+                }
+                if project.LinkGithub != "" {
+                <a href={ templ.URL(project.LinkGithub) } target="_blank"
+                    class={ helpers.TemplIf(project.IsWIP, "pointer-events-none", "pointer-events-auto") + " inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[0.6875rem] font-medium bg-zinc-800 text-fg-200 border border-zinc-700 hover:border-zinc-500 hover:text-fg-100 transition-all duration-150"}>
+                    @icons.Github("size-4")
+                    GitHub
+                    @icons.ArrowUpRight("size-3")
+                </a>
+                }
+            </div>
+        } else {
+            <div class="pointer-events-none inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[0.6875rem] font-medium bg-zinc-800 text-fg-200 border border-zinc-700 hover:border-zinc-500 hover:text-fg-100 transition-all duration-150">
+                @icons.Ban("size-4")
+                Closed Source
+            </div>
+        }
+    </div>
+    <div
+        class="arrow relative z-10 text-fg-200 mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-150 ease-in-out">
+        @icons.ArrowUpRight("size-4")
+    </div>
+</div>
 }
 
 templ ProjectPage(projects []constants.Project) {
-	{{ params := constants.NewLayoutParams("Home") }}
-	@components.MainLayout(params) {
-		<div class="max-w-xl flex flex-col gap-4">
-			<div class="fade-up flex flex-col gap-3" style="animation-delay:0ms">
-				<p class="mono text-xs text-fg-200 tracking-widest uppercase">derrickgee.dev/projects</p>
-				<h1 class="text-3xl font-semibold tracking-tight">Projects Directory</h1>
-				<p class="text-fg-200 text-sm leading-relaxed">
-					A collection of projects built across different languages and frameworks.
-					Each runs as an independent service.
-				</p>
-			</div>
-			<hr class="border-fg-300 fade-up" style="animation-delay:80ms"/>
-			for idx, p := range projects {
-				@projectCard(idx, p)
-			}
-		</div>
-	}
+{{ params := constants.NewLayoutParams("Home") }}
+@components.MainLayout(params) {
+<div class="max-w-xl flex flex-col gap-4">
+    <div class="fade-up flex flex-col gap-3" style="animation-delay:0ms">
+        <p class="mono text-xs text-fg-200 tracking-widest uppercase">derrickgee.dev/projects</p>
+        <h1 class="text-3xl font-semibold tracking-tight">Projects Directory</h1>
+        <p class="text-fg-200 text-sm leading-relaxed">
+            A collection of projects built across different languages and frameworks.
+            Each runs as an independent service.
+        </p>
+    </div>
+    <hr class="border-fg-300 fade-up" style="animation-delay:80ms" />
+    for idx, p := range projects {
+    @projectCard(idx, p)
+    }
+</div>
+}
 }

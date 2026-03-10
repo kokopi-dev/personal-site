@@ -23,28 +23,9 @@ func setupRoutesAndMiddleware() *gin.Engine {
 		page := pages.Index()
 		page.Render(c.Request.Context(), c.Writer)
 	})
-	var projects = []constants.Project{
-		{
-			Url:         "https://derrickgee.dev/projects/support-ticket-demo",
-			Name:        "Support Ticket System",
-			Description: "A sample of a robust support ticket system with the option to OAuth for database access. Authenticated users will be able to see other user created tickets. Guest mode will store tickets locally in your browser.",
-			HostedOn:    "Home Server",
-			LinkGitea:   "https://git.kokopi.dev/kokopi/personal-support-ticket-system",
-			LinkGithub:  "https://github.com/kokopi-dev/personal-support-ticket-system",
-			TechTags:    []string{"typescript", "react", "fastify", "tailwindcss", "sqlite", "vite", "bun"},
-		},
-		{
-			Url:         "/projects/dotfiles",
-			Name:        "Linux Dotfiles",
-			Description: "Configurations for Linux",
-			HostedOn:    "",
-			LinkGitea:   "https://git.kokopi.dev/kokopi/dotfiles",
-			LinkGithub:  "https://github.com/kokopi-dev/dotfiles",
-			TechTags:    []string{"Linux", "Lua", "Bash", "Python"},
-		},
-	}
+	// projects defined in constants
 	r.GET("/projects", func(c *gin.Context) {
-		page := pages.ProjectPage(projects)
+		page := pages.ProjectPage(constants.AllProjects)
 		page.Render(c.Request.Context(), c.Writer)
 	})
 	r.GET("/projects/dotfiles", func(c *gin.Context) {
