@@ -35,11 +35,11 @@ var AllProjects = []Project{
 	{
 		Url:         "/projects/dotfiles",
 		Name:        "Koko-chan",
-		Description: "Paid discord bot service for handling schedules.",
-		HostedOn:    "",
+		Description: "Discord bot service for handling schedules, has free and paid tiers.",
+		HostedOn:    "VPS",
 		LinkGitea:   "",
 		LinkGithub:  "",
-		TechTags:    []string{"golang", "templ", "tailwindcss"},
+		TechTags:    []string{"golang", "templ", "tailwindcss", "postgresql", "redis"},
 		IsWIP:       true,
 	},
 }
